@@ -6,13 +6,14 @@
   "devDependencies": {
     "@types/bun": "latest"
   },
-  "script": {
+  "scripts": {
     "dev": "bun --watch run src/index"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "dependencies": {
+    "@elysia/openapi": "^1.4.15",
     "elysia": "^1.4.28"
   }
 }
