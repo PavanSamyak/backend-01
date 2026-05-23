@@ -45,15 +45,15 @@ app
   .post(
     "/logger",
     (context) => {
-      const userIp = context.server?.requestIP(context.request)?.address;
+      const userIp = `${context.server?.requestIP(context.request)?.family}  ${context.server?.requestIP(context.request)?.address} ${context.server?.requestIP(context.request)?.port}`;
       const userName = context.body.name;
-      const who = userName + userIp;
+      const who = `${userName} ${userIp}`;
       logIt(who);
       return `you just got noted ${userName}, your ip is ${userIp}!`;
     },
     {
       body: t.Object({
-        name: t.String(),
+        name: t.String({ minLength: 1 }),
         ip: t.Any(),
       }),
     },
