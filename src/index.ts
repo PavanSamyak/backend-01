@@ -3,11 +3,22 @@ import openapi from "@elysia/openapi";
 
 const app = new Elysia();
 
+const jsonic = {
+  key: "I'm up baby!",
+};
+
 app
   .use(openapi())
   .get("/", () => {
-    return "hello from server";
+    return "system online";
   })
-  .listen(3000);
-
-console.log(`${app.server}:`);
+  .get("/api/v1/json", ({ set }) => {
+    set.status = 200;
+    set.headers = {
+      "content-type": "application/json",
+    };
+    return jsonic;
+  })
+  .listen(8080, ({ hostname, port }) => {
+    console.log(`backend is running on http://${hostname}:${port}`);
+  });
